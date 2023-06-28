@@ -89,3 +89,15 @@ resource "aws_route_table" "big-pvt-vpc-rt" {
 
 }
 }
+
+#  public route table association -A
+resource "aws_route_table_association" "big-pub-sn-assoc-A" {
+  subnet_id      = aws_subnet.big-pub-sn-A.id
+  route_table_id = aws_route_table.big-pub-vpc-rt.id
+}
+
+ # public route table association -B
+resource "aws_route_table_association" "big-pub-sn-assoc-B" {
+  subnet_id      = aws_subnet.big-pub-sn-B.id
+  route_table_id = aws_route_table.big-pub-vpc-rt.id
+}
