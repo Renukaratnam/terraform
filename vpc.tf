@@ -101,3 +101,15 @@ resource "aws_route_table_association" "big-pub-sn-assoc-B" {
   subnet_id      = aws_subnet.big-pub-sn-B.id
   route_table_id = aws_route_table.big-pub-vpc-rt.id
 }
+
+# private route table association -A
+resource "aws_route_table_association" "big-pvt-sn-assoc-A" {
+  subnet_id      = aws_subnet.big-pvt-sn-A.id
+  route_table_id = aws_route_table.big-pvt-vpc-rt.id
+}
+  # private  route table association -B
+resource "aws_route_table_association" "big-pvt-sn-assoc-B" {
+  subnet_id      = aws_subnet.big-pvt-sn-B.id
+  route_table_id = aws_route_table.big-pvt-vpc-rt.id
+  
+}
