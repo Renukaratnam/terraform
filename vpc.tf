@@ -113,3 +113,43 @@ resource "aws_route_table_association" "big-pvt-sn-assoc-B" {
   route_table_id = aws_route_table.big-pvt-vpc-rt.id
   
 }
+
+# security groups - SSH&HTTP
+resource "aws_security_group" "big-sg" {
+  name        = "allow_web"
+  description = "Allow SSH & HTTP inbound traffic"
+  vpc_id      = aws_vpc.big-vpc.id
+
+  ingress {
+    description      = "SSH from www"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+ingress {
+    description      = "HTTP from www"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+ tags = {
+    Name = "big-sg"
+  }
+}
+
+
+
