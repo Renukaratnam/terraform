@@ -79,3 +79,13 @@ resource "aws_route_table" "big-pub-vpc-rt" {
     Name = "big-pub-rt"
   }
 }
+
+# private route table
+resource "aws_route_table" "big-pvt-vpc-rt" {
+  vpc_id = aws_vpc.big-vpc.id
+
+  tags = {
+    Name = "big-pvt-rt"
+
+}
+}
